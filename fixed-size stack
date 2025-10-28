@@ -1,0 +1,70 @@
+public class FixedStack {
+
+    int[] stack;
+    int top;
+    int capacity;
+
+    public FixedStack(int size) {
+        stack = new int[size];
+        capacity = size;
+        top = -1;
+    }
+
+    public void push(int item) {
+        if (top == capacity - 1) {
+            System.out.println("Stack Overflow");
+        } else {
+            stack[++top] = item;
+            System.out.println(item + " pushed");
+        }
+    }
+
+    public int pop() {
+        if (top == -1) {
+            System.out.println("Stack Underflow");
+            return -1;
+        } else {
+            System.out.println(stack[top] + " popped");
+            return stack[top--];
+        }
+    }
+
+    public int peek() {
+        if (top == -1) {
+            System.out.println("Stack is empty");
+            return -1;
+        } else {
+            System.out.println("Top: " + stack[top]);
+            return stack[top];
+        }
+    }
+
+    public void display() {
+        if (top == -1) {
+            System.out.println("Stack is empty");
+        } else {
+            System.out.print("Stack elements: ");
+            for (int i = 0; i <= top; i++) {
+                System.out.print(stack[i] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        FixedStack s = new FixedStack(4);
+
+        s.push(10);
+        s.push(20);
+        s.push(30);
+        s.push(40);
+        s.push(50); // This will trigger overflow
+
+        s.display();
+        s.peek();
+
+        s.pop();
+        s.pop();
+        s.display();
+    }
+}
